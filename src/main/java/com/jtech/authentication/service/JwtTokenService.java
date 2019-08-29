@@ -6,11 +6,8 @@ import com.jtech.authentication.model.JwtTokenUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 
 /**
@@ -52,42 +49,43 @@ public class JwtTokenService {
 
     private String getCellPhoneNumberFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (String) claims.get("cellPhone");
+        return (String) claims.getOrDefault("cellPhone", "");
     }
 
     private String getEmailFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (String) claims.get("email");
+        return (String) claims.getOrDefault("email", "");
     }
 
     private String getFirstNameFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (String) claims.get("firstName");
+        return (String) claims.getOrDefault("firstName", "");
     }
 
     private String getLastNameFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (String) claims.get("lastName");
+        return (String) claims.getOrDefault("lastName", "");
     }
 
     private String getNickNameFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (String) claims.get("nickName");
+        return (String) claims.getOrDefault("nickName", "");
     }
 
     private boolean isEnabledFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (Boolean) claims.get("enabled");
+        return (Boolean) claims.getOrDefault("enabled", true);
     }
 
     private Date getUserExpirationDateFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (Date) claims.get("userExpirationDate");
+        return (Date) claims.getOrDefault("userExpirationDate", new Date());
     }
 
+    @SuppressWarnings("unchecked")
     private Set<String> getAuthoritiesFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (Set<String>) claims.get("authorities");
+        return new HashSet<>(((List<String>) claims.getOrDefault("authorities", new ArrayList<>())));
     }
 
     private <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
