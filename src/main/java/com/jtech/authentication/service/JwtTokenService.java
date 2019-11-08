@@ -41,7 +41,7 @@ public class JwtTokenService {
 
     private Long getUserIdFromToken(String token) {
         Claims claims = getAllClaimsFromToken(token);
-        return (Long) claims.getOrDefault("userId", 0L);
+        return ((Number) claims.getOrDefault("userId", 0L)).longValue();
     }
 
     private String getUsernameFromToken(String token) {
