@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * @Author amir
- * @CreatedAt 8/29/19
+ * @author amir
+ * @since 8/29/19
  */
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 

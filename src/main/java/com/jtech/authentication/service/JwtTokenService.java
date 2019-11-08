@@ -11,8 +11,8 @@ import java.util.*;
 import java.util.function.Function;
 
 /**
- * @Author amir
- * @CreatedAt 8/29/19
+ * @author amir
+ * @since 8/29/19
  */
 public class JwtTokenService {
 
@@ -26,6 +26,7 @@ public class JwtTokenService {
 
     public JwtTokenUserDetails parseToken(String token) throws TokenExpiredException {
         return JwtTokenUserDetails.builder()
+                .userId(getUserIdFromToken(token))
                 .username(getUsernameFromToken(token))
                 .cellPhoneNumber(getCellPhoneNumberFromToken(token))
                 .email(getEmailFromToken(token))
@@ -38,6 +39,10 @@ public class JwtTokenService {
                 .build();
     }
 
+    private Long getUserIdFromToken(String token) {
+        Claims claims = getAllClaimsFromToken(token);
+        return (Long) claims.getOrDefault("userId", 0L);
+    }
 
     private String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);

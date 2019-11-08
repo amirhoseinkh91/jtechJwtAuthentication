@@ -20,7 +20,7 @@
 
     <groupId>com.jtech</groupId>
     <artifactId>jwt-authentication-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <dependencies>
 

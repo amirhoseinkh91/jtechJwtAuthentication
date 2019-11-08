@@ -6,8 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 import java.util.Collection;
 
 /**
- * @Author amir
- * @CreatedAt 8/29/19
+ * @author amir
+ * @since 8/29/19
  */
 public class JwtAuthentication implements Authentication {
 

@@ -10,8 +10,8 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
- * @Author amir
- * @CreatedAt 8/29/19
+ * @author amir
+ * @since 8/29/19
  */
 public class JwtAuthenticatedProfile implements Authentication {
 

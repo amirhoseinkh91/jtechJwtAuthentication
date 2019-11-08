@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * @Author amir
- * @CreatedAt 8/29/19
+ * @author amir
+ * @since 8/29/19
  */
 @Getter
 @Setter
@@ -18,6 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class JwtTokenUserDetails {
 
+    private Long userId;
     private String username;
     private String firstName;
     private String lastName;
@@ -35,6 +36,11 @@ public class JwtTokenUserDetails {
     public static class JwtTokenUserDetailsBuilder {
 
         private JwtTokenUserDetails userDetails = new JwtTokenUserDetails();
+
+        public JwtTokenUserDetailsBuilder userId(Long l) {
+            userDetails.userId = l;
+            return this;
+        }
 
         public JwtTokenUserDetailsBuilder username(String s) {
             userDetails.username = s;
